@@ -27,14 +27,14 @@ import subprocess
 import re
 
 def cal_nucl_depth():
-	directory = r'/Users/mansi/Desktop/NeST/local/Pool_test/' #input directory
+	directory = r'/Users/mansi/Desktop/Haiti_pooled_bam/' #input directory
 	for filename in os.listdir(directory):
-		filepath = os.path.join(directory, filename)
-		bamfile = filepath+"/alignments/output_FM_SR_DD_RG.bam"
-		bamoutfile = filename+".txt"
-		outputfile = filename+"_result.txt"
-
-		print(bamfile)
+		if filename != ".DS_Store":
+			print(filename)
+			filepath = os.path.join(directory, filename)
+			bamfile = filepath+"/alignments/output_FM_SR_DD_RG.bam"
+			bamoutfile = filename+".txt"
+			outputfile = filename+"_result.txt"
 		"""
 		if "RG.bam" in filepath:
 			bamfile = filepath
