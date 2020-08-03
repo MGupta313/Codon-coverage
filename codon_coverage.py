@@ -30,19 +30,11 @@ def cal_nucl_depth():
 	directory = r'/Users/mansi/Desktop/Haiti_pooled_bam/' #input directory
 	for filename in os.listdir(directory):
 		if filename != ".DS_Store":
-			print(filename)
 			filepath = os.path.join(directory, filename)
-			bamfile = filepath+"/alignments/output_FM_SR_DD_RG.bam"
-			bamoutfile = filename+".txt"
-			outputfile = filename+"_result.txt"
-		"""
-		if "RG.bam" in filepath:
-			bamfile = filepath
-			bamoutfile=filename.split(".")[0]+".txt" #output file from samtools
-			outputfile = filename+"-results.txt" #output file with codon coverage
+			bamfile_path = filepath+"/alignments/output_FM_SR_DD_RG.bam"
+			bamoutfile = filename[10:13]+"_depth.txt"
+			return bamoutfile
 
-			print(bamfile)
-"""
 cal_nucl_depth()
 
 
