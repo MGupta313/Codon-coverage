@@ -27,16 +27,22 @@ import subprocess
 import re
 
 def cal_nucl_depth():
-	directory = r'/Users/mansi/Desktop/NeST/local/Pool_test/18HAxx00xs001PfF0510_S1/alignments/' #input directory
+	directory = r'/Users/mansi/Desktop/NeST/local/Pool_test/' #input directory
 	for filename in os.listdir(directory):
 		filepath = os.path.join(directory, filename)
+		bamfile = filepath+"/alignments/output_FM_SR_DD_RG.bam"
+		bamoutfile = filename+".txt"
+		outputfile = filename+"_result.txt"
+
+		print(bamfile)
+		"""
 		if "RG.bam" in filepath:
 			bamfile = filepath
 			bamoutfile=filename.split(".")[0]+".txt" #output file from samtools
 			outputfile = filename+"-results.txt" #output file with codon coverage
 
 			print(bamfile)
-
+"""
 cal_nucl_depth()
 
 
