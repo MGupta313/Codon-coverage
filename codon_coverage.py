@@ -30,6 +30,7 @@ def cal_nucl_depth():
 	directory = r'/Users/mansi/Desktop/Codon_coverage_data/Haiti_pooled_bam/' #input directory
 	for filename in os.listdir(directory):
 		if filename != ".DS_Store":
+			print(filename)
 			sample_num = filename[10:13]
 			filepath = os.path.join(directory, filename)
 			bamfile_path = filepath+"/alignments/output_FM_SR_DD_RG.bam"
@@ -40,9 +41,8 @@ def cal_nucl_depth():
 			subprocess.call(['samtools', 'depth', bamfile_path], stdout = f)
 			subprocess.call(['mv', depth_output, '/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/'])
 
-			print("calculated nucleotide depth for", filename, "\n")
+			print("calculated nucleotide depth for", filename, ": Pooled sample", sample_num+"\n")
 
-			return sample_num
 
 def process_bed_file(input_bed_file, gene):
 	with open(input_bed_file) as f:
@@ -115,12 +115,12 @@ def process_geneious_file(input_geneious_file, gene):
 			new_list.append(re.sub(pattern = '\d', repl= '', string= final_lines[i])) 
 	
 	filename = ""
-	file_list = []
+	#file_list = []
 	for element in new_list:
 		if element[0].isdigit():
 			filename = element.split("assembled")[0]+"-assembled.txt"
-			file_list.append(filename)
-			print("Processed geneious file for", gene, ":", filename)
+			#file_list.append(filename)
+			print("Processed geneious file for", gene, ":", filename+"\n")
 			with open(filename, 'w') as fo:
 				fo.write(element+"\n")
 		else:
@@ -129,11 +129,11 @@ def process_geneious_file(input_geneious_file, gene):
 				fo.write(element)
 		subprocess.call(['mv', filename, "/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled"])
 
-	return file_list
+	#return file_list
 
 
 def process_depth_file(input_depth_file, ref_bed_file):
-	print("Processing", input_depth_file)
+	print("Processing", input_depth_file+"\n")
 	with open(input_depth_file) as f2:
 		lines2 = f2.readlines()
 		final_lines2 = []
@@ -169,17 +169,17 @@ def process_depth_file(input_depth_file, ref_bed_file):
 				#if not open assembled file and get positions from there
 				if int(temp[0][0]) == start_from_bed_file:
 					print("Start position from bed file matches start position of sample seq")
-					print("start_from_bed_file", start_from_bed_file)
-					print("end_from_bed_file", end_from_bed_file)
+					print("start_from_bed_file", str(start_from_bed_file))
+					print("end_from_bed_file", str(end_from_bed_file) + "\n")
 					for j in range(len(temp)):
 						if int(temp[j][0]) >= start_from_bed_file and int(temp[j][0]) <= end_from_bed_file:
 							temp_list.append(int(temp[j][1]))
 					#if they don't match it means the sample seq is truncated
 					#check for start/stop using geneious assembled seq
 				else:
-					print("start position does not match bed file start position")
+					print("start position does not match bed file start position"+"\n")
 					print("going through geneious assembled file now")
-					with open("/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/001-PfDHFR-assembled.txt") as f3:
+					with open(geneious_filepath) as f3:
 						print("opening geneious assembled file")
 						lines3 = f3.readlines()
 						for i in range(0, len(lines3[1]), 3):
@@ -220,7 +220,7 @@ def cal_codon_cov(input_dict):
 				sum1=0
 		codon_cov_dict[key] = temp_list2
 		#avg_codon_cov[key] = avg_list
-	print("Calculated codon coverage")
+	print("Calculated codon coverage"+"\n")
 	return codon_cov_dict
 
 
@@ -243,15 +243,13 @@ def avg_codon_cov(input_dict):
 		#codon_cov_dict[key] = temp_list2
 		avg_codon_cov[key] = avg_list
 
-	print("Calculated average codon coverage")
+	print("Calculated average codon coverage"+"\n")
 	return avg_codon_cov
 
 
 
-def create_result_file(codon_cov, avg_cov):
-	print("Creating codon coverage and average coverage results files")
-	sample="001"
-	gene="PfDHFR"
+def create_result_file(codon_cov, avg_cov, sample, gene):
+	print("Creating codon coverage and average coverage results files"+"\n")
 	
 	subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
 	
@@ -274,10 +272,8 @@ def create_result_file(codon_cov, avg_cov):
 	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/"])
 	
 
-def create_category(codon_cov, avg_cov):
-	print("Creating category files for codon coverage and avergae coverage")
-	sample="001"
-	gene="PfDHFR"
+def create_category(codon_cov, avg_cov, sample, gene):
+	print("Creating category files for codon coverage and avergae coverage"+"\n")
 	
 	subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
 	
@@ -302,31 +298,26 @@ def create_category(codon_cov, avg_cov):
 	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/Codon_coverage_data/Category_results/"])
 	
 
-
-#cal_nucl_depth()
-#bed_file= process_bed_file("/Users/mansi/Desktop/Codon_coverage_data/mdr.bed", "PfDHFR")
-#assembled_files_list = process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents from PFDHFRpooled.txt", "PfDHFR")
-#depth_dict = process_depth_file("/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/001_depth.txt", bed_file)
-#codon_cov_dict_final = cal_codon_cov(depth_dict)
-#avg_codon_cov_final = avg_codon_cov(depth_dict)
-#create_result_file(codon_cov_dict_final, avg_codon_cov_final)
-#create_category(codon_cov_dict_final, avg_codon_cov_final)
-
-
-
+#generally required functions
+cal_nucl_depth()
+bed_file= process_bed_file("/Users/mansi/Desktop/Codon_coverage_data/mdr.bed", "PfDHFR")
+process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents from PFDHFRpooled.txt", "PfDHFR")
 
 
 # running the script for PfDHFR for all samples
-
-directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
-for filename in os.listdir(directory):
-	print(filename)
-
-direct = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/"
-for file in os.listdir(direct):
-	print(file)
-
-
+depth_directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
+geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/"
+for filename in os.listdir(depth_directory):
+	for file in os.listdir(geneious_directory):
+		if filename[0:3] == file[0:3]:
+			sample_id = filename[0:3]
+			depth_filepath = os.path.join(depth_directory, filename)
+			geneious_filepath = os.path.join(geneious_directory, file)
+			depth_dict = process_depth_file(depth_filepath, bed_file)
+			codon_cov_dict_final = cal_codon_cov(depth_dict)
+			avg_codon_cov_final = avg_codon_cov(depth_dict)
+			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
 
 
 
