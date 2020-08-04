@@ -1,6 +1,6 @@
 import re 
 
-with open("10 documents from PFMDR1pooled.txt") as f:
+with open("10 documents from PFDHFRpooled.txt") as f:
 	lines_list = f.readlines()
 	converted_list = []
 	final_lines = []
