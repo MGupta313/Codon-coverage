@@ -91,8 +91,6 @@ def process_bed_file(input_bed_file, gene):
 
 def process_geneious_file(input_geneious_file, gene):
 
-	#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
-
 	with open(input_geneious_file) as f:
 		lines_list = f.readlines()
 		converted_list = []
@@ -208,19 +206,15 @@ def process_depth_file(input_depth_file, ref_bed_file):
 
 def cal_codon_cov(input_dict):
 	codon_cov_dict={}
-	#avg_codon_cov = {}
 	for key in input_dict:
 		sum1=0
-		#avg = 0
 		temp_list2=[]
-		#avg_list = []
 		for i in range(len(input_dict[key])):
 			sum1 = sum1 + int(input_dict[key][i])
 			if (i+1)%3 == 0:
-				#avg = sum1//3
-				temp_list2.append(sum1)
-				#avg_list.append(avg)
-				sum1=0
+				if sum1 > 5:
+					temp_list2.append(sum1)
+					sum1=0
 		codon_cov_dict[key] = temp_list2
 		#avg_codon_cov[key] = avg_list
 	print("Calculated codon coverage"+"\n")
@@ -239,10 +233,11 @@ def avg_codon_cov(input_dict):
 		for i in range(len(input_dict[key])):
 			sum1 = sum1 + int(input_dict[key][i])
 			if (i+1)%3 == 0:
-				avg = sum1//3
-				temp_list2.append(sum1)
-				avg_list.append(avg)
-				sum1=0
+				if sum1 > 5:
+					avg = sum1//3
+					temp_list2.append(sum1)
+					avg_list.append(avg)
+					sum1=0
 		#codon_cov_dict[key] = temp_list2
 		avg_codon_cov[key] = avg_list
 
@@ -253,8 +248,6 @@ def avg_codon_cov(input_dict):
 
 def create_result_file(codon_cov, avg_cov, sample, gene):
 	print("Creating codon coverage and average coverage results files"+"\n")
-	
-	subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
 	
 	filename = sample+"_"+gene+"_result.txt"
 	with open(filename, "w") as fo:
@@ -278,8 +271,6 @@ def create_result_file(codon_cov, avg_cov, sample, gene):
 def create_category(codon_cov, avg_cov, sample, gene):
 	print("Creating category files for codon coverage and avergae coverage"+"\n")
 	
-	subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
-	
 	filename = sample+"_"+gene+"_cat_cov.txt"
 	
 	with open(filename, "w") as fo:
@@ -300,6 +291,15 @@ def create_category(codon_cov, avg_cov, sample, gene):
 
 	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/Codon_coverage_data/Category_results/"])
 	
+#########################################################################
+#Main run code#
+#########################################################################
+
+
+
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
 
 #generally required functions
 cal_nucl_depth()
@@ -309,7 +309,7 @@ process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents fro
 
 # running the script for PfDHFR for all samples
 depth_directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
-geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/geneious_output"
+geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled"
 for filename in os.listdir(depth_directory):
 	for file in os.listdir(geneious_directory):
 		if filename[0:3] == file[0:3]:
