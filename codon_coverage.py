@@ -91,7 +91,7 @@ def process_bed_file(input_bed_file, gene):
 
 def process_geneious_file(input_geneious_file, gene):
 
-	subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
+	#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
 
 	with open(input_geneious_file) as f:
 		lines_list = f.readlines()
@@ -107,27 +107,30 @@ def process_geneious_file(input_geneious_file, gene):
 			final_lines.append(new_lines)
 	#print(final_lines)
 
-	new_list = []
-	for i in range(0, len(final_lines)):
-		if final_lines[i][0].isdigit():
-			new_list.append(final_lines[i])
-		else:
-			new_list.append(re.sub(pattern = '\d', repl= '', string= final_lines[i])) 
-	
-	filename = ""
-	#file_list = []
-	for element in new_list:
-		if element[0].isdigit():
-			filename = element.split("assembled")[0]+"-assembled.txt"
-			#file_list.append(filename)
-			print("Processed geneious file for", gene, ":", filename+"\n")
-			with open(filename, 'w') as fo:
-				fo.write(element+"\n")
-		else:
-			#print("else", filename)
-			with open(filename, 'a') as fo:
-				fo.write(element)
-		subprocess.call(['mv', filename, "/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled"])
+		new_list = []
+		for i in range(0, len(final_lines)):
+			if final_lines[i][0].isdigit():
+				new_list.append(final_lines[i])
+			else:
+				new_list.append(re.sub(pattern = '\d', repl= '', string= final_lines[i])) 
+
+
+		filename = ""
+		file_list = []
+		for element in new_list:
+			if element[0].isdigit():
+				filename = element.split("assembled")[0]+"-assembled.txt"
+				file_list.append(filename)
+				#print("if -", filename)
+				with open(filename, 'w') as fo:
+					fo.write(element+"\n")
+			else:
+				#print("else", filename)
+				with open(filename, 'a') as fo:
+					fo.write(element)
+
+		for item in file_list:
+			subprocess.call(['mv', item, "/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled"])
 
 	#return file_list
 
@@ -306,19 +309,19 @@ process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents fro
 
 # running the script for PfDHFR for all samples
 depth_directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
-geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/"
+geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/geneious_output"
 for filename in os.listdir(depth_directory):
 	for file in os.listdir(geneious_directory):
 		if filename[0:3] == file[0:3]:
 			sample_id = filename[0:3]
-			if sample_id != "010":
-				depth_filepath = os.path.join(depth_directory, filename)
-				geneious_filepath = os.path.join(geneious_directory, file)
-				depth_dict = process_depth_file(depth_filepath, bed_file)
-				codon_cov_dict_final = cal_codon_cov(depth_dict)
-				avg_codon_cov_final = avg_codon_cov(depth_dict)
-				create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
-				create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+			#if sample_id != "010":
+			depth_filepath = os.path.join(depth_directory, filename)
+			geneious_filepath = os.path.join(geneious_directory, file)
+			depth_dict = process_depth_file(depth_filepath, bed_file)
+			codon_cov_dict_final = cal_codon_cov(depth_dict)
+			avg_codon_cov_final = avg_codon_cov(depth_dict)
+			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
 
 
 
