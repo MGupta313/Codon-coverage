@@ -311,13 +311,14 @@ for filename in os.listdir(depth_directory):
 	for file in os.listdir(geneious_directory):
 		if filename[0:3] == file[0:3]:
 			sample_id = filename[0:3]
-			depth_filepath = os.path.join(depth_directory, filename)
-			geneious_filepath = os.path.join(geneious_directory, file)
-			depth_dict = process_depth_file(depth_filepath, bed_file)
-			codon_cov_dict_final = cal_codon_cov(depth_dict)
-			avg_codon_cov_final = avg_codon_cov(depth_dict)
-			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
-			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+			if sample_id != "010":
+				depth_filepath = os.path.join(depth_directory, filename)
+				geneious_filepath = os.path.join(geneious_directory, file)
+				depth_dict = process_depth_file(depth_filepath, bed_file)
+				codon_cov_dict_final = cal_codon_cov(depth_dict)
+				avg_codon_cov_final = avg_codon_cov(depth_dict)
+				create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+				create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
 
 
 
