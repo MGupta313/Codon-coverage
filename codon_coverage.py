@@ -27,18 +27,19 @@ import subprocess
 import re
 
 def cal_nucl_depth():
-	directory = r'/Users/mansi/Desktop/bam_to_cc/pooled_outputs/' #input directory
+	directory = r'/Users/mansi/Desktop/Codon_coverage_data/Haiti_pooled_bam/' #input directory
 	for filename in os.listdir(directory):
 		if filename != ".DS_Store":
-			sample_num = filename[0:3]
+			print(filename)
+			sample_num = filename[10:13]
 			filepath = os.path.join(directory, filename)
-			bamfile_path = filepath
+			bamfile_path = filepath+"/alignments/output_FM_SR_DD_RG.bam"
 			depth_output = sample_num+"_depth.txt"
-
+			
 			print("running samtools depth on", filename)
 			f=open(depth_output, "w")
 			subprocess.call(['samtools', 'depth', bamfile_path], stdout = f)
-			subprocess.call(['mv', depth_output, '/Users/mansi/Desktop/bam_to_cc/Samtools_output/'])
+			subprocess.call(['mv', depth_output, '/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/'])
 
 			print("calculated nucleotide depth for", filename, ": Pooled sample", sample_num+"\n")
 
@@ -127,7 +128,7 @@ def process_geneious_file(input_geneious_file, gene):
 					fo.write(element)
 
 		for item in file_list:
-			subprocess.call(['mv', item, "/Users/mansi/Desktop/bam_to_cc/Geneious_assembled/PfDHFR"])
+			subprocess.call(['mv', item, "/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled"])
 
 	#return file_list
 
@@ -255,7 +256,7 @@ def create_result_file(codon_cov, avg_cov, sample, gene):
 			for i in range(len(codon_cov[key])):
 				fo.write(str(i+1)+"\t"+str(codon_cov[key][i])+"\n")
 
-	subprocess.call(['mv', filename, "/Users/mansi/Desktop/bam_to_cc/Coverage_results/"])
+	subprocess.call(['mv', filename, "/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/"])
 	
 	avg_filename = "avg_"+sample+"_"+gene+"_result.txt"
 	with open(avg_filename, "w") as fo:
@@ -264,7 +265,7 @@ def create_result_file(codon_cov, avg_cov, sample, gene):
 			for i in range(len(avg_cov[key])):
 				fo.write(str(i+1)+"\t"+str(avg_cov[key][i])+"\n")
 
-	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/bam_to_cc/Coverage_results/"])
+	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/"])
 	
 
 def create_category(codon_cov, avg_cov, sample, gene):
@@ -278,7 +279,7 @@ def create_category(codon_cov, avg_cov, sample, gene):
 			for i in range(len(codon_cov[key])):
 				fo.write(str(codon_cov[key][i])+",")
 
-	subprocess.call(['mv', filename, "/Users/mansi/Desktop/bam_to_cc/Category_results/"])
+	subprocess.call(['mv', filename, "/Users/mansi/Desktop/Codon_coverage_data/Category_results/"])
 	
 	avg_filename = "avg_"+sample+"_"+gene+"_cat_cov.txt"
 
@@ -288,33 +289,27 @@ def create_category(codon_cov, avg_cov, sample, gene):
 			for i in range(len(avg_cov[key])):
 				fo.write(str(avg_cov[key][i])+",")
 
-	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/bam_to_cc/Category_results/"])
+	subprocess.call(['mv', avg_filename, "/Users/mansi/Desktop/Codon_coverage_data/Category_results/"])
 	
 #########################################################################
 #Main run code#
-#Prequistes:
-		# 1.) bam files from NeST
-		# 2.) bed file in the working directory
-		# 3.) assembled sequences from geneious
 #########################################################################
 
 
 
-subprocess.call(['mkdir', '/Users/mansi/Desktop/bam_to_cc/Geneious_assembled/'])
-subprocess.call(['mkdir', '/Users/mansi/Desktop/bam_to_cc/Geneious_assembled/PfDHFR/'])
-subprocess.call(['mkdir', '/Users/mansi/Desktop/bam_to_cc/Coverage_results/'])
-subprocess.call(['mkdir', '/Users/mansi/Desktop/bam_to_cc/Category_results/'])
+#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
+#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
+#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
 
 #generally required functions
 cal_nucl_depth()
-
-bed_file= process_bed_file("/Users/mansi/Desktop/bam_to_cc/mdr.bed", "PfDHFR")
-process_geneious_file("/Users/mansi/Desktop/bam_to_cc/10 documents from PFDHFRpooled.txt", "PfDHFR")
+bed_file= process_bed_file("/Users/mansi/Desktop/Codon_coverage_data/mdr.bed", "PfDHFR")
+#process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents from PFDHFRpooled.txt", "PfDHFR")
 
 
 # running the script for PfDHFR for all samples
-depth_directory = r'/Users/mansi/Desktop/bam_to_cc/Samtools_output/' #input directory
-geneious_directory = r"/Users/mansi/Desktop/bam_to_cc/Geneious_assembled/PfDHFR/"
+depth_directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
+geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/PfDHFR/"
 for filename in os.listdir(depth_directory):
 	for file in os.listdir(geneious_directory):
 		if filename[0:3] == file[0:3]:
@@ -328,7 +323,7 @@ for filename in os.listdir(depth_directory):
 			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
 			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
 
-"""
+
 
 
 
