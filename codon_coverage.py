@@ -293,23 +293,27 @@ def create_category(codon_cov, avg_cov, sample, gene):
 	
 #########################################################################
 #Main run code#
+#Prequistes:
+		# 1.) bam files from NeST
+		# 2.) bed file in the working directory
+		# 3.) assembled sequences from geneious
 #########################################################################
 
 
-
-#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
-#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
-#subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Coverage_results/'])
+subprocess.call(['mkdir', '/Users/mansi/Desktop/Codon_coverage_data/Category_results/'])
 
 #generally required functions
 cal_nucl_depth()
-bed_file= process_bed_file("/Users/mansi/Desktop/Codon_coverage_data/mdr.bed", "PfDHFR")
-#process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents from PFDHFRpooled.txt", "PfDHFR")
+bed_file= process_bed_file("/Users/mansi/Desktop/Codon_coverage_data/mdr.bed", "PfMDR1")
+#process_geneious_file("/Users/mansi/Desktop/Codon_coverage_data/10 documents from PfMDR1pooled.txt", "PfMDR1")
 
 
-# running the script for PfDHFR for all samples
+# running the script for PfMDR1 for all samples
 depth_directory = r'/Users/mansi/Desktop/Codon_coverage_data/Samtools_output/' #input directory
-geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/PfDHFR/"
+geneious_directory = r"/Users/mansi/Desktop/Codon_coverage_data/Geneious_assembled/PfMDR1/"
 for filename in os.listdir(depth_directory):
 	for file in os.listdir(geneious_directory):
 		if filename[0:3] == file[0:3]:
@@ -320,8 +324,8 @@ for filename in os.listdir(depth_directory):
 			depth_dict = process_depth_file(depth_filepath, bed_file)
 			codon_cov_dict_final = cal_codon_cov(depth_dict)
 			avg_codon_cov_final = avg_codon_cov(depth_dict)
-			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
-			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfDHFR")
+			create_result_file(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfMDR1")
+			create_category(codon_cov_dict_final, avg_codon_cov_final, sample_id, "PfMDR1")
 
 
 
