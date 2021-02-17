@@ -65,7 +65,7 @@ def cal_nucl_depth(directory):
 					fo.write(filename+"\n")
 			else:
 				bamfile_path = filepath+"/alignments/output_FM_SR_DD_RG.bam" # non-empty files used for depth calculation
-				depth_output = sample_num+"_depth.txt"
+				depth_output = sample_num+"_"+gene_name+"_depth.txt"
 				print("Running samtools depth on:  {}".format(filename))
 				f=open(depth_output, "w")
 				subprocess.call(['samtools', 'depth', bamfile_path], stdout = f)
@@ -164,7 +164,7 @@ def process_geneious_file(input_geneious_file, gene):
 		file_list = []
 		for element in new_list:
 			if element[0].isdigit():
-				filename = element.split("assembled")[0][9:15].split("P")[0]+"_assembled.txt"
+				filename = element.split("assembled")[0][9:15].split("P")[0]+"_"+gene_name+"_assembled.txt"
 				file_list.append(filename)
 				#print("if -", filename)
 				with open(filename, 'w') as fo:
