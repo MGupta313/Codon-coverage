@@ -10,6 +10,6 @@
 8. This will generate a single document containing all the sequences assembled to the selected gene.
 9. Use this as one of the inputs to the calc_coverage.py which will process this document and use each sample sequence to obtain start and end positions for coverage calculations.
 
-![](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
+![](https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Folders.png)
 
 ![picture alt](http://via.placeholder.com/200x150 "Title is optional")
