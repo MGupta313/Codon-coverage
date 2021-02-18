@@ -1,6 +1,0 @@
-#File	/Users/eldintalundzic/haiti_data/18HAxx00x9696PfF0510_S5_L001_R2_001.fastq.gz	/Users/eldintalundzic/haiti_data/18HAxx00x9696PfF0510_S5_L001_R1_001.fastq.gz
-#Total	29294
-#Matched	6796	23.19929%
-#Name	Reads	ReadsPct
-Nextera_transposase_read1	3855	13.15969%
-Nextera_transposase_read2	2941	10.03960%
