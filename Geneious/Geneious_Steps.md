@@ -12,4 +12,4 @@
 
 ![](https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Folders.png =100x20)
 
-![picture alt](http://via.placeholder.com/200x150 "Title is optional")
+<img src="https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Folders.png" alt="Folders" width="200"/>
