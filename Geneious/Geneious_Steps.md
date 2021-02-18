@@ -2,7 +2,7 @@
 
 1. Create a folder for your project or dataset for eg. Haiti.
 2. Create a sub folder called Individual or Pooled based on your sample type.
-<img src="https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Folders.png" alt="Folders" width="200" align="right"/>
+<img src="https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Folders.png" alt="Folders" width="200" align="centre"/>
 3. Import all bam files here.
 4. Geneious will automatically identify which sample contains reads for which genes.
 <img src="https://github.com/MGupta313/Codon-coverage/blob/master/Geneious/Bam_files.png" alt="Bam_files" width="700"/>
