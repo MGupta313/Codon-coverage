@@ -54,7 +54,10 @@ def cal_nucl_depth(directory):
 	for filename in os.listdir(directory):
 		if filename != ".DS_Store":
 			# print(filename)
-			sample_num = filename[9:15].split("P")[0] # getting the sample number from the filename
+			if sample_type == "Individual":
+				sample_num = filename[9:15].split("P")[0] # getting the sample number from the filename
+			if sample_type == "Pooled":
+				sample_num = filename[10:15].split("P")[0]
 			# print(sample_num)
 			
 			filepath = os.path.join(directory, filename)
@@ -164,7 +167,10 @@ def process_geneious_file(input_geneious_file, gene):
 		file_list = []
 		for element in new_list:
 			if element[0].isdigit():
-				filename = element.split("assembled")[0][9:15].split("P")[0]+"_"+gene_name+"_assembled.txt"
+				if sample_type == "Individual":
+					filename = element.split("assembled")[0][9:15].split("P")[0]+"_"+gene_name+"_assembled.txt"
+				if sample_type == "Pooled":
+					filename = element.split("assembled")[0][10:15].split("P")[0]+"_"+gene_name+"_assembled.txt"
 				file_list.append(filename)
 				#print("if -", filename)
 				with open(filename, 'w') as fo:

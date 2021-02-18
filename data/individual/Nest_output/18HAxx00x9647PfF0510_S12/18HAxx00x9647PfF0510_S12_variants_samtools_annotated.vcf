@@ -1,0 +1,55 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.9+htslib-1.9
+##samtoolsCommand=samtools mpileup -go /Users/eldintalundzic/NeST/local/Haiti_ind/18HAxx00x9647PfF0510_S12/18HAxx00x9647PfF0510_S12_variants.bcf -f ref/pfalciparum/mdr.fa /Users/eldintalundzic/NeST/local/Haiti_ind/18HAxx00x9647PfF0510_S12/alignments/output_FM_SR_DD_RG.bam
+##reference=file://ref/pfalciparum/mdr.fa
+##bcftools_callVersion=1.9+htslib-1.9
+##bcftools_callCommand=call --skip-variants indels --multiallelic-caller --variants-only -O v -s 18HAxx00x9647PfF0510_S12 -o /Users/eldintalundzic/NeST/local/Haiti_ind/18HAxx00x9647PfF0510_S12/18HAxx00x9647PfF0510_S12_variants_samtools.vcf /Users/eldintalundzic/NeST/local/Haiti_ind/18HAxx00x9647PfF0510_S12/18HAxx00x9647PfF0510_S12_variants.bcf; Date=Wed Oct  7 15:23:47 2020
+##contig=<ID=PfCRT,length=3399>
+##contig=<ID=MT,length=5967>
+##contig=<ID=PfDHFR,length=1827>
+##contig=<ID=PfDHPS,length=2417>
+##contig=<ID=PfK13,length=2181>
+##contig=<ID=PfMDR1,length=4260>
+##ALT=<ID=*,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##INFO=<ID=ICB,Number=1,Type=Float,Description="Inbreeding Coefficient Binomial test (bigger is better)">
+##INFO=<ID=HOB,Number=1,Type=Float,Description="Bias in the number of HOMs number (smaller is better)">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Allele count in genotypes for each ALT allele, in the same order as listed">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Average mapping quality">
+##INFO=<ID=CDSPos,Number=1,Type=Integer,Description="CDS location of variant">
+##INFO=<ID=RefCodon,Number=1,Type=String,Description="Reference codon for the variant">
+##INFO=<ID=AAPos,Number=1,Type=Integer,Description="Amino acid position altered by variant">
+##INFO=<ID=AltCodon,Number=1,Type=String,Description="Alternate codon for the variant">
+##INFO=<ID=RefAA,Number=1,Type=String,Description="Reference amino acid">
+##INFO=<ID=AltAA,Number=1,Type=String,Description="Alternate amino acid">
+##INFO=<ID=Freq,Number=1,Type=Float,Description="Variant allele frequency">
+##INFO=<ID=VFD,Number=1,Type=Float,Description="Log variant flanking depth;A measure that account for position of the base in the reads, the coverage at the location, and the average length of the overlap between the supporting reads">
+##INFO=<ID=Var,Number=1,Type=String,Description="Variant string, with chromsome and position">
+##INFO=<ID=Exon,Number=1,Type=String,Description="Exon number of the variant">
+##INFO=<ID=Gene,Number=1,Type=String,Description="Gene name">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	18HAxx00x9647PfF0510_S12
+PfCRT	368	10368	C	A	225.0	.	DP=45;VDB=0.627488;SGB=-0.693097;MQSB=0.978724;MQ0F=0.0;AC=2;AN=2;DP4=0,0,3,27;MQ=41;CDSPos=96;RefCodon=GGC;AAPos=32;AltCodon=GGA;RefAA=G;AltAA=G;Freq=1.0;VFD=3.2349492234486004;Exon=exon2;Gene=PfCRT;Var=PfCRT:G32G	GT:PL	1/1:255,90,0
+PfCRT	1079	11079	T	A	16.5123	.	DP=9;VDB=0.1;SGB=-0.453602;MQSB=1.0;MQ0F=0.0;AC=2;AN=2;DP4=0,0,1,1;MQ=42;Freq=1.0;VFD=3.1062618843656145;Exon=Intron;Var=PfCRT:T1079A	GT:PL	1/1:46,6,0
+PfCRT	1083	11083	T	A	52.0	.	DP=11;VDB=0.0588947;SGB=-0.511536;MQSB=1.0;MQ0F=0.0;AC=2;AN=2;DP4=0,0,1,2;MQ=41;Freq=1.0;VFD=3.235342727994781;Exon=Intron;Var=PfCRT:T1083A	GT:PL	1/1:82,9,0
+PfCRT	1117	11117	A	T	225.0	.	DP=29;VDB=0.00421755;SGB=-0.689466;MQSB=0.714286;MQ0F=0.0;AC=2;AN=2;DP4=0,0,2,14;MQ=39;Freq=1.0;VFD=3.4926095987274666;Exon=Intron;Var=PfCRT:A1117T	GT:PL	1/1:255,48,0
+PfCRT	1778	11778	A	G	20.382	.	DP=189;VDB=2.3896e-13;SGB=-0.693127;RPB=1.23631e-08;MQB=1.00483e-07;MQSB=0.00418914;BQB=3.21926e-05;MQ0F=0.042328;ICB=1.0;HOB=0.5;AC=1;AN=2;DP4=16,14,2,31;MQ=33;Freq=0.5238095238095238;VFD=4.512341696656049;Exon=Intron;Var=PfCRT:A1778G	GT:PL	0/1:53,0,203
+PfCRT	2166	12166	A	T	225.0	.	DP=40;VDB=0.115843;SGB=-0.693127;MQSB=0.677428;MQ0F=0.0;AC=2;AN=2;DP4=0,0,29,4;MQ=39;Freq=1.0;VFD=3.5275491118428373;Exon=Intron;Var=PfCRT:A2166T	GT:PL	1/1:255,99,0
+PfCRT	2193	12193	A	T	183.0	.	DP=33;VDB=0.972386;SGB=-0.670168;MQSB=0.895781;MQ0F=0.0;AC=2;AN=2;DP4=0,0,6,4;MQ=41;Freq=1.0;VFD=3.480308797494833;Exon=Intron;Var=PfCRT:A2193T	GT:PL	1/1:213,30,0
+PfDHPS	1487	41487	G	T	225.0	.	DP=159;VDB=0.955255;SGB=-0.693147;MQSB=0.996817;MQ0F=0.0;AC=2;AN=2;DP4=0,0,14,74;MQ=41;CDSPos=1311;RefCodon=GCG;AAPos=437;AltCodon=GCT;RefAA=A;AltAA=A;Freq=1.0;VFD=4.41931410711209;Exon=exon2;Gene=PfDHPS;Var=PfDHPS:A437A	GT:PL	1/1:255,255,0
+PfMDR1	551	60551	A	T	225.0	.	DP=58;VDB=0.0112377;SGB=-0.69311;MQSB=0.983828;MQ0F=0.0;AC=2;AN=2;DP4=0,0,8,23;MQ=41;CDSPos=551;RefCodon=TAT;AAPos=184;AltCodon=TTT;RefAA=Y;AltAA=F;Freq=1.0;VFD=4.1664391079007945;Exon=exon1;Gene=PfMDR1;Var=PfMDR1:Y184F	GT:PL	1/1:255,93,0
+PfMDR1	2952	62952	T	C	225.0	.	DP=21;VDB=0.00549941;SGB=-0.676189;MQSB=1.0;MQ0F=0.0;AC=2;AN=2;DP4=0,0,2,9;MQ=42;CDSPos=2952;RefCodon=TTT;AAPos=984;AltCodon=TTC;RefAA=F;AltAA=F;Freq=1.0;VFD=3.7072761483795214;Exon=exon1;Gene=PfMDR1;Var=PfMDR1:F984F	GT:PL	1/1:255,33,0

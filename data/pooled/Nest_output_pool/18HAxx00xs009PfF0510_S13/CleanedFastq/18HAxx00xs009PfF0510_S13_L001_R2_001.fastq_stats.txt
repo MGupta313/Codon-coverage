@@ -1,0 +1,6 @@
+#File	/Users/mansi/Desktop/pooled_samples_fq/18HAxx00xs009PfF0510_S13_L001_R2_001.fastq.gz	/Users/mansi/Desktop/pooled_samples_fq/18HAxx00xs009PfF0510_S13_L001_R1_001.fastq.gz
+#Total	271130
+#Matched	104796	38.65157%
+#Name	Reads	ReadsPct
+Nextera_transposase_read2	56316	20.77085%
+Nextera_transposase_read1	48480	17.88072%
