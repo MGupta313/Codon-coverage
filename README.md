@@ -21,5 +21,8 @@ The four genes which are studies here are:
 	1. [Geneious Prime](https://www.geneious.com/) is a powerful bioinformatics software solution packed with fundamental molecular biology and sequence analysis tools.
 	2. This is used to map sample sequences to reference gene sequence (CDS region) to get rid of the intronic regions, if any.
 	3. Sample sequences mapped to reference gene sequence are always required to get start and end positions in cases of PfCRT and PfDHPS. They are sometimes required for PfDHFR and PfMDR1 as well.
+	4. This will generate a single document containing all the sequences assembled to the selected gene.
+
+
 
 
