@@ -23,6 +23,19 @@ The four genes which are studies here are:
 	3. Sample sequences mapped to reference gene sequence are always required to get start and end positions in cases of PfCRT and PfDHPS. They are sometimes required for PfDHFR and PfMDR1 as well.
 	4. This will generate a single document containing all the sequences assembled to the selected gene.
 
+## Codon coverage calculation:
 
+`python calc_cov_ind.py <sample_type> <gene_name> <nest_output_path> <bed_file_path> <geneious_document_path>`
 
+User inputs required:
+- sample_type: Individual or Pooled
+- gene_name: PfDHFR or PfMDR1 or PfDHPS or PfCRT
+- nest_output_path: /data/Haiti_ind_samples/
+- bed_file_path: /data/mdr.bed
+- geneious_document_path: /data/individual/PfDHFR/91\ documents\ from\ PfDHFR\ Assembled.txt
+
+**NOTE:** Use the exact options as mentioned in sample_type and gene_name because the input is case sensitive.
+
+Individual samples:
+`python calc_cov_ind.py Individual PfDHFR <nest_output_path> <bed_file_path> <geneious_document_path>`
 
