@@ -30,11 +30,11 @@ python calc_coverage.py <sample_type> <gene_name> <nest_output_path> <bed_file_p
 ```
 
 User inputs required:
-- sample_type: Individual or Pooled
-- gene_name: PfDHFR or PfMDR1 or PfDHPS or PfCRT
-- nest_output_path: data/individual/Nest_output
-- bed_file_path: /data/mdr.bed
-- geneious_document_path: /data/individual/91\ documents\ from\ PfDHFR\ Assembled.txt
+- `sample_type`: Individual or Pooled
+- `gene_name`: PfDHFR or PfMDR1 or PfDHPS or PfCRT
+- `nest_output_path`: data/individual/Nest_output
+- `bed_file_path`: /data/mdr.bed
+- `geneious_document_path`: /data/individual/91\ documents\ from\ PfDHFR\ Assembled.txt
 
 **NOTE:** Use the exact options as mentioned in sample_type and gene_name because the input is case sensitive.
 
