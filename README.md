@@ -36,8 +36,6 @@ User inputs required:
 - `bed_file_path`: /data/mdr.bed
 - `geneious_document_path`: /data/individual/91\ documents\ from\ PfDHFR\ Assembled.txt
 
-**NOTE:** Use the exact options as mentioned in sample_type and gene_name because the input is case sensitive.
-
 Individual samples:
 
 ```
@@ -49,4 +47,5 @@ Pooled samples:
 ```
 python calc_coverage.py Pooled PfCRT /Users/mansi/Desktop/Codon-coverage/data/pooled/Nest_output /Users/mansi/Desktop/Codon-coverage/mdr.bed /Users/mansi/Desktop/Codon-coverage/data/pooled/8\ documents\ from\ CDS\ Assembled.txt
 ```
+**NOTE:** Use the exact options as mentioned in sample_type and gene_name because the input is case sensitive.
 
