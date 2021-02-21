@@ -25,17 +25,20 @@ The four genes which are studies here are:
 
 ## Codon coverage calculation:
 
-`python calc_cov_ind.py <sample_type> <gene_name> <nest_output_path> <bed_file_path> <geneious_document_path>`
+`python calc_coverage.py <sample_type> <gene_name> <nest_output_path> <bed_file_path> <geneious_document_path>`
 
 User inputs required:
 - sample_type: Individual or Pooled
 - gene_name: PfDHFR or PfMDR1 or PfDHPS or PfCRT
-- nest_output_path: /data/Haiti_ind_samples/
+- nest_output_path: data/individual/Nest_output
 - bed_file_path: /data/mdr.bed
-- geneious_document_path: /data/individual/PfDHFR/91\ documents\ from\ PfDHFR\ Assembled.txt
+- geneious_document_path: /data/individual/91\ documents\ from\ PfDHFR\ Assembled.txt
 
 **NOTE:** Use the exact options as mentioned in sample_type and gene_name because the input is case sensitive.
 
 Individual samples:
-`python calc_cov_ind.py Individual PfDHFR <nest_output_path> <bed_file_path> <geneious_document_path>`
+`python calc_coverage.py Individual PfDHFR /Users/mansi/Desktop/Codon-coverage/data/individual/Nest_output /Users/mansi/Desktop/Codon-coverage/mdr.bed /Users/mansi/Desktop/Codon-coverage/data/individual/91\ documents\ from\ PfDHFR\ Assembled.txt`
+
+Pooled samples:
+`python calc_coverage.py Pooled PfCRT /Users/mansi/Desktop/Codon-coverage/data/pooled/Nest_output /Users/mansi/Desktop/Codon-coverage/mdr.bed /Users/mansi/Desktop/Codon-coverage/data/pooled/8\ documents\ from\ CDS\ Assembled.txt`
 

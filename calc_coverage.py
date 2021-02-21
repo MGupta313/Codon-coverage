@@ -25,7 +25,7 @@ Step 6: Using jupyter notebook, categorize the codon positions in groups of 30 f
 ###################################################################
 ###################### Usage of this script: ######################
 
-python calc_cov_ind.py <sample_type> <gene_name> <nest_output_path> <bed_file_path> <geneious_document_path>
+python calc_coverage.py <sample_type> <gene_name> <nest_output_path> <bed_file_path> <geneious_document_path>
 
 Input options/Examples:
  - sample_type: Individual or Pooled
